@@ -77,12 +77,61 @@ class _AreaCalculatorState extends State<AreaCalculator> {
 
           Controller(controller: widthTextField, hint: 'Width'),
 
-          Controller(controller: heightTextField, hint: 'Height',)
+          Controller(controller: heightTextField, hint: 'Height'),
+
+
+
+          Container(margin: EdgeInsets.all(15.0),
+
+          child: ElevatedButton(
+            child: Text('CalculateArea',
+            style: TextStyle(fontSize: 18.0),),
+            onPressed: calculateArea,
+          ),),
+
+          Text(result,
+            style: TextStyle(
+              fontSize: 24.0,
+              color: Colors.green[700],
+            ),),
+
+
 
 
         ],
       );
   }
+
+
+
+  void calculateArea() {
+    double area;
+
+    width = double.tryParse(widthTextField.text) ?? 00.00;
+    height = double.tryParse(heightTextField.text) ?? 00.00 ;
+    print('From calculate areaa');
+    //print(heightTextField.text);
+    //print(widthTextField.text);
+    print('------------------------');
+
+    if (currentShape == 'Rectangle') {
+      area = width * height;
+      print(width);
+      print(height);
+    }
+    else if (currentShape == 'Triangle') {
+      print(width);
+      print(height);
+      area = width * height / 2;
+    }
+    else {
+      area = 0;
+    }
+    setState(() {
+      result = 'The area is ' + area.toString();
+    });
+  }
+
 
 
 }
