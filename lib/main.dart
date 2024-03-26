@@ -41,10 +41,18 @@ class _AreaCalculatorState extends State<AreaCalculator> {
   String result = '0';
   double width = 0;
   double height = 0;
+   double area = 0;
 
   final TextEditingController widthTextField = TextEditingController();
   final TextEditingController heightTextField = TextEditingController();
+  @override
+  void initState() {
 
+    super.initState();
+    result = '0';
+    currentShape = 'Rectangle';
+
+  }
   @override
   Widget build(BuildContext context) {
     return
@@ -60,6 +68,12 @@ class _AreaCalculatorState extends State<AreaCalculator> {
               onChanged: (String? newShape) {
                 setState(() {
                   currentShape = newShape!;
+                  widthTextField.clear();
+                  heightTextField.clear();
+                  area = 0.0;
+                 calculateArea();
+
+
                 });
               }),
 
@@ -105,7 +119,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
 
 
   void calculateArea() {
-    double area;
+   // double area;
 
     width = double.tryParse(widthTextField.text) ?? 00.00;
     height = double.tryParse(heightTextField.text) ?? 00.00 ;
